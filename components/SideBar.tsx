@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link'
 import {
   HiOutlineClipboardList,
   HiOutlineDocumentReport,
@@ -20,7 +21,9 @@ const SideBar = () => {
 
 const SideBarIcon = ({ icon, text = "tooltip 💡"  }) => (
   <div className="sidebar-icon group">
-    {icon}
+    <Link href={`/${text.toLowerCase()}`}>
+      {icon}
+    </Link>
     <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
   </div>
 );
