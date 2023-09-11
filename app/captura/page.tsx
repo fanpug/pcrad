@@ -4,15 +4,20 @@ import React, { SetStateAction, useState } from "react";
 
 import SquareButton from "@/components/SquareButton";
 
+import { salones } from "../../constants";
+
 const Page = () => {
   const [floor, setFloor] = useState(0);
   const [classroom, setClassroom] = useState("0");
 
-  const handleSetFloor = (floorText: SetStateAction<String>) => {
+  const handleSetFloor = (floorText: SetStateAction<string>) => {
     let floorNum = floorText === "PB" ? 0 : Number(floorText);
     setFloor(floorNum);
-    console.log(floor);
-    
+  };
+
+  const handleSetClassroom = (classText: SetStateAction<string>) => {
+    setClassroom(classText);
+    console.log(classroom);
   };
 
   return (
@@ -40,9 +45,36 @@ const Page = () => {
             handleOnClick={handleSetFloor}
           />
         </div>
-        <div id="classroom-buttons">
-
+        <div id="classroom-buttons" className="flex gap-10 mt-6 flex-wrap">
+          {
+            floor === 0 ?
+            (
+              <SquareButton
+                innerText="LP7"
+                lowerText="La explanada"
+                handleOnClick={handleSetClassroom}
+              />
+            
+            )
+            :
+            salones[floor].map((salon, index) => (
+              <li key={index} className="list-none">
+                <SquareButton 
+                  innerText={salon}
+                  lowerText={`Salón ${salon}`}
+                  handleOnClick={handleSetClassroom}
+                />
+              </li>
+            ))
+          }
         </div>
+      </div>
+      <div id="teacher-list" className="mt-8">
+        <h2 className="text-4xl">
+          Buscar docentes:
+        </h2>
+
+
       </div>
     </main>
   );
