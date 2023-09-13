@@ -3,12 +3,17 @@
 import React, { SetStateAction, useState } from "react";
 
 import SquareButton from "@/components/SquareButton";
+import SearchCaptura from "@/components/SearchCaptura";
 
 import { salones } from "../../constants";
 
 const Page = () => {
-  const [floor, setFloor] = useState(0);
-  const [classroom, setClassroom] = useState("0");
+  const [floor, setFloor] = useState<number>(0);
+  const [classroom, setClassroom] = useState<string>("");
+
+  const [inputValue, setInputValue] = useState<string>("");
+  const [debouncedValue, setDebouncedValue] = useState<string>("");
+  const [teachers, setTeachers] = useState([]);
 
   const handleSetFloor = (floorText: SetStateAction<string>) => {
     let floorNum = floorText === "PB" ? 0 : Number(floorText);
@@ -19,6 +24,16 @@ const Page = () => {
     setClassroom(classText);
     console.log(classroom);
   };
+
+
+ 
+  // if (error) return <div className="text-9xl">failed to load</div>
+  // if (isLoading) return <div className="text-9xl">loading...</div>
+  // console.log(data);
+  
+ 
+  // // render data
+  // return <div className="text-9xl">hello {data[0].name}!</div>
 
   return (
     <main className="p-5 pl-24 pr-8 w-full">
@@ -73,7 +88,7 @@ const Page = () => {
         <h2 className="text-4xl">
           Buscar docentes:
         </h2>
-
+        <SearchCaptura />
 
       </div>
     </main>
