@@ -8,7 +8,7 @@ import SearchCaptura from "@/components/SearchCaptura";
 import { salones } from "../../constants";
 
 const Page = () => {
-  const [floor, setFloor] = useState<number>(0);
+  const [floor, setFloor] = useState<string>('0');
   const [classroom, setClassroom] = useState<string>("");
 
   const [inputValue, setInputValue] = useState<string>("");
@@ -16,7 +16,7 @@ const Page = () => {
   const [teachers, setTeachers] = useState([]);
 
   const handleSetFloor = (floorText: SetStateAction<string>) => {
-    let floorNum = floorText === "PB" ? 0 : Number(floorText);
+    let floorNum = floorText === "PB" ? '0' : floorText;
     setFloor(floorNum);
   };
 
@@ -43,31 +43,36 @@ const Page = () => {
             innerText="PB"
             lowerText="Planta Baja"
             handleOnClick={handleSetFloor}
+            buttonPressed={floor === '0' ? "PB" : ""}
           />
           <SquareButton
             innerText="1"
             lowerText="Primer piso"
             handleOnClick={handleSetFloor}
+            buttonPressed={floor}
           />
           <SquareButton
             innerText="2"
             lowerText="Segundo piso"
             handleOnClick={handleSetFloor}
+            buttonPressed={floor}
           />
           <SquareButton
             innerText="3"
             lowerText="Tercer piso"
             handleOnClick={handleSetFloor}
+            buttonPressed={floor}
           />
         </div>
         <div id="classroom-buttons" className="flex gap-10 mt-6 flex-wrap">
           {
-            floor === 0 ?
+            floor === '0' ?
             (
               <SquareButton
                 innerText="LP7"
                 lowerText="La explanada"
                 handleOnClick={handleSetClassroom}
+                buttonPressed={classroom}
               />
             
             )
@@ -78,6 +83,7 @@ const Page = () => {
                   innerText={salon}
                   lowerText={`Salón ${salon}`}
                   handleOnClick={handleSetClassroom}
+                  buttonPressed={classroom}
                 />
               </li>
             ))
