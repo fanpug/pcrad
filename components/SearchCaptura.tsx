@@ -24,7 +24,7 @@ function SearchCaptura() {
   };
 
   //metodo de filtrado
-  const results = !search ? users : users.filter((dato)=> dato.name.toLowerCase().includes(search.toLocaleLowerCase()));
+  const results = !search ? users : users.filter((dato)=> dato.name.toLowerCase().includes(search.toLocaleLowerCase()) || dato.username.toLowerCase().includes(search.toLocaleLowerCase()));
 
   useEffect(() => {
     showData();
